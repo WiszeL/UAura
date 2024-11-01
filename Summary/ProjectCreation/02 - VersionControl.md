@@ -21,9 +21,11 @@ Existed .gitignore:
 !/Summary/**
 !/Data/**
 
-# Ignore everything in the Content except Blueprint
+# Ignore everything in the Content except those
 # As it gonna take the Git LFS (kinda expensive for me)
 !/Content/Blueprints/**
+!/Content/Inputs/**
+!/Content/Data/**
 
 # Allow any files from /RawContent dir.
 # Any file in /RawContent dir will be managed by git lfs.
