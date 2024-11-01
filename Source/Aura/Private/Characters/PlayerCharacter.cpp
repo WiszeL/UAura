@@ -3,10 +3,13 @@
 #include "Characters/PlayerCharacter.h"
 
 #include "EnhancedInputComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Helpers/AssetHelper.h"
+#include "PlayerHandlers/AuraPlayerState.h"
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -44,6 +47,17 @@ void APlayerCharacter::BeginPlay()
 	
 }
 
+void APlayerCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	// Init References
+	AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+
+	// ...
+	InitAbilityInfo();
+}
+
 void APlayerCharacter::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -53,6 +67,31 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	UEnhancedInputComponent* EnhancedInput = CastChecked<UEnhancedInputComponent>(PlayerInputComponent);
 	EnhancedInput->BindAction(MoveAction.Get(), ETriggerEvent::Triggered, this, &ThisClass::Move);
+}
+
+// ===== References ===== //
+
+void APlayerCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+
+	// Init References
+	AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+
+	// ...
+	InitAbilityInfo();
+}
+
+// ===== Ability System ===== //
+
+void APlayerCharacter::InitAbilityInfo()
+{
+	// Ability System
+	AbilitySystemComponent = Cast<UAuraAbilitySystemComponent>(AuraPlayerState->GetAbilitySystemComponent());
+	AttributeSet = AuraPlayerState->GetAttributeSet();
+
+	// Init Ability Info
+	AbilitySystemComponent->InitAbilityActorInfo(AuraPlayerState.Get(), this);
 }
 
 // ===== Input ===== //

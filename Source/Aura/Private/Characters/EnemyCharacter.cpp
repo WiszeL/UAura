@@ -2,6 +2,9 @@
 
 #include "Characters/EnemyCharacter.h"
 
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAttributeSet.h"
+
 AEnemyCharacter::AEnemyCharacter()
 {
 	// Set the mesh to be responsive to Visibility Trace (for highlighting purpose)
@@ -11,6 +14,13 @@ AEnemyCharacter::AEnemyCharacter()
 	// Set stencil for highlighting
 	GetMesh()->SetCustomDepthStencilValue(255);
 	WeaponMesh->SetCustomDepthStencilValue(255);
+
+	// Ability System
+	AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("Ability System");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	
+	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("Attribute Set");
 }
 
 // ===== Events ===== //
@@ -18,7 +28,9 @@ AEnemyCharacter::AEnemyCharacter()
 void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	// Init Ability Info
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 }
 
 // ===== Highlight ===== //

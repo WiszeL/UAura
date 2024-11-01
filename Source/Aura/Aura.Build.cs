@@ -13,11 +13,16 @@ public class Aura : ModuleRules
 			"Core", 
 			"CoreUObject", 
 			"Engine", 
-			"EnhancedInput",
+			"GameplayAbilities",
 			"InputCore"
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		PrivateDependencyModuleNames.AddRange(new string[]
+		{
+			"EnhancedInput",
+			"GameplayTags",
+			"GameplayTasks"
+		});
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

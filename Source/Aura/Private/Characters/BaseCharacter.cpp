@@ -2,6 +2,8 @@
 
 #include "Characters/BaseCharacter.h"
 
+#include "AbilitySystem/AuraAbilitySystemComponent.h" 
+
 ABaseCharacter::ABaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
@@ -12,8 +14,22 @@ ABaseCharacter::ABaseCharacter()
 	WeaponMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+// ===== Events ===== //
+
 void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+// ===== Ability System ===== //
+
+void ABaseCharacter::InitAbilityInfo()
+{
+	
+}
+
+UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
 }
