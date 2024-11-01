@@ -18,7 +18,7 @@ makes it more versatile.
 GAS has already handled most of the multiplayer case. But still, we need to understand how does the handling works.
 
 ## 2.1 Server Model
-![img.png](Images/01-mainpart.png)
+![img.png](Images/01-servermodel.png)
 - Authority means the server is the "correct" version of a game
 - There are 2 Server Models, they are Dedicated and Listen Server
 
