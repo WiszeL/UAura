@@ -6,6 +6,7 @@
 #include "InputMappingContext.h"
 #include "Helpers/AssetHelper.h"
 #include "Interfaces/HighlightInterface.h"
+#include "UI/AuraHUD.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -29,6 +30,14 @@ void AAuraPlayerController::BeginPlay()
 	SetupInput();
 }
 
+void AAuraPlayerController::AcknowledgePossession(class APawn* P)
+{
+	Super::AcknowledgePossession(P);
+
+	if (AAuraHUD* AuraHUD = GetHUD<AAuraHUD>())
+		AuraHUD->PrepareHUD();
+}
+
 void AAuraPlayerController::PlayerTick(const float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
@@ -43,10 +52,8 @@ void AAuraPlayerController::SetupInput()
 	checkf(DefaultInput, TEXT("Default Input is not set yet!"));
 
 	// Subsystem
-	UEnhancedInputLocalPlayerSubsystem* Subsystem = GetLocalPlayer()->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>();
-	check(Subsystem);
-
-	Subsystem->AddMappingContext(DefaultInput.Get(), 0);
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = GetLocalPlayer()->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
+		Subsystem->AddMappingContext(DefaultInput.Get(), 0);
 
 	// Mouse
 	bShowMouseCursor = true;

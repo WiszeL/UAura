@@ -17,14 +17,17 @@ class AURA_API AAuraPlayerController : public APlayerController
 public:
 	AAuraPlayerController();
 
+private:
+	void InitAssets();
+
+public:
 	// ===== Events ===== //
 
 	virtual void BeginPlay() override;
+	virtual void AcknowledgePossession(APawn* P) override;
 	virtual void PlayerTick(float DeltaTime) override;
-	
+
 private:
-	void InitAssets();
-	
 	// ===== Input ===== //
 	
 	UPROPERTY(EditAnywhere, Category=Input)

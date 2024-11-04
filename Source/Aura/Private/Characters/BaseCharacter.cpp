@@ -24,11 +24,6 @@ void ABaseCharacter::BeginPlay()
 
 // ===== Ability System ===== //
 
-void ABaseCharacter::InitAbilityInfo()
-{
-	
-}
-
 UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;

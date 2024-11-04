@@ -21,7 +21,8 @@ public class Aura : ModuleRules
 		{
 			"EnhancedInput",
 			"GameplayTags",
-			"GameplayTasks"
+			"GameplayTasks",
+			"UMG"
 		});
 
 		// Uncomment if you are using Slate UI
