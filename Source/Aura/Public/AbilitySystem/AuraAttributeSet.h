@@ -13,6 +13,16 @@
 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+struct FEffectProps
+{
+	UAbilitySystemComponent* AbilitySystemComp = nullptr;
+	AActor* Avatar = nullptr;
+	AController* Controller = nullptr;
+	ACharacter* Character = nullptr;
+
+	FGameplayEffectContextHandle CtxHandle;
+};
+
 UCLASS()
 class AURA_API UAuraAttributeSet : public UAttributeSet
 {
@@ -21,7 +31,13 @@ class AURA_API UAuraAttributeSet : public UAttributeSet
 public:
 	UAuraAttributeSet();
 
+	// ===== Events ===== //
+	
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;
+	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
+
+	static void SetEffectProps(const FGameplayEffectModCallbackData& Data, FEffectProps& Source, FEffectProps& Target);
 	
 	// ===== Vital Attributes ===== //
 

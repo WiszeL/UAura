@@ -21,6 +21,9 @@ AEnemyCharacter::AEnemyCharacter()
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 	
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("Attribute Set");
+
+	// Tags
+	Tags.Add("Enemy");
 }
 
 // ===== Events ===== //

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystem/AbilityTypes.h"
 #include "GameFramework/Actor.h"
 #include "BaseEffector.generated.h"
 
@@ -14,14 +15,28 @@ class AURA_API ABaseEffector : public AActor
 public:
 	ABaseEffector();
 
-	// ===== Events ===== //
+private:
+	// ===== Gameplay Effect ===== //
+
+	UPROPERTY(EditAnywhere, Category=GameplayEffect)
+	float EffectLevel = 1.f;
+
+	UPROPERTY(EditAnywhere, Category=GameplayEffect)
+	bool bAppliesToEnemy = false;
 	
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, Category=GameplayEffect)
+	bool bDestroyAfterApplyingEffect = false;
+	
+	UPROPERTY(EditAnywhere, Category=GameplayEffect)
+	TArray<FGameplayEffectData> AppliesGameplayEffects;
 
-protected:
+	TMultiMap<UAbilitySystemComponent*, FActiveEffectHandle> ActivesEffect;
+	
 	UFUNCTION(BlueprintCallable)
-	void OnBeginOverlap(AActor* Other);
+	void OnEffectBeginOverlap(AActor* OtherActor);
 
 	UFUNCTION(BlueprintCallable)
-	void OnEndOverlap(AActor* Other);
+	void OnEffectEndOverlap(AActor* OtherActor);
+	
+	void ApplyGameplayEffect(UAbilitySystemComponent* TargetAbility, const FGameplayEffectData& Effect, bool& bApplied);
 };
