@@ -6,12 +6,20 @@
 #include "AbilitySystemComponent.h"
 #include "AuraAbilitySystemComponent.generated.h"
 
-/**
- * 
- */
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAppliedDelegate, const FGameplayTagContainer&)
+
 UCLASS()
 class AURA_API UAuraAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
+
+public:
+	// ===== Events ===== //
+
+	FEffectAppliedDelegate EffectAppliedDelegate;
 	
+	virtual void OnPlayerControllerSet() override;
+
+private:
+	void EffectApplied(UAbilitySystemComponent* AbilitySystemComp, const FGameplayEffectSpec& Spec, FActiveGameplayEffectHandle ActiveHandle) const;
 };

@@ -28,4 +28,10 @@ public:
 	bool bInheritController = false;
 	
 	void SetWidgetController(UBaseWidgetController* InController);
+
+protected:
+	// ===== Properties ===== //
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	float GetViewportOffsetByPercentage(TEnumAsByte<EAxis::Type> Axis, const float Percentage);
 };

@@ -44,6 +44,9 @@ private:
 	
 	// ===== Overlay ===== //
 
+	UPROPERTY(EditAnywhere, Category=Overlay)
+	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
+	
 	UPROPERTY()
 	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
 	

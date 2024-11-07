@@ -23,6 +23,6 @@ void AAuraHUD::PrepareHUD()
 	const FWidgetControllerParams Params { AuraPC, AuraPS, AuraAS, AuraASC };
 
 	// Overlay
-	OverlayWidgetController = CreateController<UOverlayWidgetController>(Params);
+	OverlayWidgetController = CreateController<UOverlayWidgetController>(Params, OverlayWidgetControllerClass);
 	Overlay = CreateAuraWidget<UAuraUserWidget, UOverlayWidgetController>(OverlayClass, OverlayWidgetController);
 }

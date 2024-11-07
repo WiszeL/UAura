@@ -2,6 +2,11 @@
 
 #include "UI/WidgetControllers/OverlayWidgetController.h"
 
+UOverlayWidgetController::UOverlayWidgetController()
+{
+	EffectData = FSoftObjectPath { TEXT("/Game/Data/DataTables/DT_EffectData.DT_EffectData") };
+}
+
 void UOverlayWidgetController::BroadcastInitData()
 {
 	// Broadcast vital attributes
@@ -13,6 +18,7 @@ void UOverlayWidgetController::BroadcastInitData()
 
 void UOverlayWidgetController::BindCallbacksToDependencies()
 {
+	// Vital Attributes Changes
 	AbilitySystemComp->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetHealthAttribute())
 		.AddLambda([this](const FOnAttributeChangeData& Data)
 	{
@@ -35,5 +41,17 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 		.AddLambda([this](const FOnAttributeChangeData& Data)
 	{
 		OnMaxManaChanged.Broadcast(Data.NewValue);
+	});
+
+	// Effect Applied
+	AbilitySystemComp->EffectAppliedDelegate.AddLambda([this](const FGameplayTagContainer& TagContainer)
+	{
+		for (const auto& Tag : TagContainer)
+		{
+			if (!Tag.MatchesTag(FGameplayTag::RequestGameplayTag("Effect"))) continue;
+			
+			const FUIWidgetRow* Row = EffectData.LoadSynchronous()->FindRow<FUIWidgetRow>(Tag.GetTagName(), "");
+			DynamicEffectAppliedDelegate.Broadcast(*Row);
+		}
 	});
 }

@@ -8,16 +8,46 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChangeValueDelegate, float, NewValue);
 
+USTRUCT(BlueprintType)
+struct FUIWidgetRow : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FGameplayTag EffectTag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FText Message;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UUserWidget> MessageWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TObjectPtr<UTexture2D> Image = nullptr;
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDynamicEffectAppliedDelagate, const FUIWidgetRow&, Row);
+
 UCLASS()
 class AURA_API UOverlayWidgetController : public UBaseWidgetController
 {
 	GENERATED_BODY()
 
 public:
+	UOverlayWidgetController();
+	
 	// ===== Events ===== //
+
+	UPROPERTY(BlueprintAssignable, Category=Events)
+	FDynamicEffectAppliedDelagate DynamicEffectAppliedDelegate;
 	
 	virtual void BroadcastInitData() override;
 	virtual void BindCallbacksToDependencies() override;
+
+	// ===== Data ===== //
+
+	UPROPERTY(EditAnywhere, Category=Data)
+	TSoftObjectPtr<UDataTable> EffectData;
 
 	// ===== Values ===== //
 
