@@ -7,6 +7,13 @@
 #include "PlayerHandlers/AuraPlayerState.h"
 #include "UI/WidgetControllers/OverlayWidgetController.h"
 
+AAuraHUD::AAuraHUD()
+{
+	// Init Asset
+	OverlayWidgetControllerClass = FSoftClassPath { TEXT("/Game/Blueprints/UI/WidgetControllers/BP_OverlayWidgetController.BP_OverlayWidgetController_C") };
+	OverlayClass = FSoftClassPath { TEXT("/Game/Blueprints/UI/Overlay/WBP_Overlay.WBP_Overlay_C") };
+}
+
 void AAuraHUD::PrepareHUD()
 {
 	// For Controller Params
@@ -23,6 +30,6 @@ void AAuraHUD::PrepareHUD()
 	const FWidgetControllerParams Params { AuraPC, AuraPS, AuraAS, AuraASC };
 
 	// Overlay
-	OverlayWidgetController = CreateController<UOverlayWidgetController>(Params, OverlayWidgetControllerClass);
-	Overlay = CreateAuraWidget<UAuraUserWidget, UOverlayWidgetController>(OverlayClass, OverlayWidgetController);
+	OverlayWidgetController = CreateController<UOverlayWidgetController>(Params, OverlayWidgetControllerClass.LoadSynchronous());
+	Overlay = CreateAuraWidget<UAuraUserWidget, UOverlayWidgetController>(OverlayClass.LoadSynchronous(), OverlayWidgetController);
 }

@@ -38,8 +38,11 @@ private:
 
 private:
 	// ===== Ability System ===== //
-	
+
 	void InitAbilityInfo();
+
+public:
+	virtual uint16 GetCombatLevel() const override;
 	
 private:
 	// ===== Camera ===== //

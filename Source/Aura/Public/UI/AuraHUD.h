@@ -18,6 +18,8 @@ class AURA_API AAuraHUD : public AHUD
 	GENERATED_BODY()
 
 public:
+	AAuraHUD();
+	
 	void PrepareHUD();
 	
 private:
@@ -45,13 +47,13 @@ private:
 	// ===== Overlay ===== //
 
 	UPROPERTY(EditAnywhere, Category=Overlay)
-	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
+	TSoftClassPtr<UOverlayWidgetController> OverlayWidgetControllerClass;
 	
 	UPROPERTY()
 	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
 	
 	UPROPERTY(EditAnywhere, Category=Overlay)
-	TSubclassOf<UAuraUserWidget> OverlayClass;
+	TSoftClassPtr<UAuraUserWidget> OverlayClass;
 
 	UPROPERTY()
 	TObjectPtr<UAuraUserWidget> Overlay;

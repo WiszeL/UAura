@@ -37,6 +37,10 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::InitAssets()
 {
 	INIT_LOAD_ASSET(MoveAction, "/Game/Inputs/IA_Move.IA_Move");
+
+	DefaultPrimaryAttributes = FSoftClassPath { TEXT("/Game/Blueprints/AbilitySystem/DefaultAttributes/GE_DefaultAuraPrimaryAttr.GE_DefaultAuraPrimaryAttr_C") };
+	DefaultSecondaryAttributes = FSoftClassPath { TEXT("/Game/Blueprints/AbilitySystem/DefaultAttributes/GE_DefaultAuraSecondaryAttr.GE_DefaultAuraSecondaryAttr_C") };
+	DefaultVitalAttributes = FSoftClassPath { TEXT("/Game/Blueprints/AbilitySystem/DefaultAttributes/GE_DefaultAuraVitalAttr.GE_DefaultAuraVitalAttr_C") };
 }
 
 // ===== Events ===== //
@@ -56,6 +60,9 @@ void APlayerCharacter::PossessedBy(AController* NewController)
 
 	// ...
 	InitAbilityInfo();
+	ApplyEffectSelf(DefaultPrimaryAttributes.LoadSynchronous());
+	ApplyEffectSelf(DefaultSecondaryAttributes.LoadSynchronous());
+	ApplyEffectSelf(DefaultVitalAttributes.LoadSynchronous());
 }
 
 void APlayerCharacter::Tick(const float DeltaTime)
@@ -87,11 +94,16 @@ void APlayerCharacter::OnRep_PlayerState()
 void APlayerCharacter::InitAbilityInfo()
 {
 	// Ability System
-	AbilitySystemComponent = Cast<UAuraAbilitySystemComponent>(AuraPlayerState->GetAbilitySystemComponent());
+	AbilitySystemComp = Cast<UAuraAbilitySystemComponent>(AuraPlayerState->GetAbilitySystemComponent());
 	AttributeSet = AuraPlayerState->GetAttributeSet();
 
 	// Init Ability Info
-	AbilitySystemComponent->InitAbilityActorInfo(AuraPlayerState.Get(), this);
+	AbilitySystemComp->InitAbilityActorInfo(AuraPlayerState.Get(), this);
+}
+
+uint16 APlayerCharacter::GetCombatLevel() const
+{
+	return AuraPlayerState->GetCombatLevel();
 }
 
 // ===== Input ===== //

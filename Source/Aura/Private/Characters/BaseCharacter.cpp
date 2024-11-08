@@ -24,7 +24,17 @@ void ABaseCharacter::BeginPlay()
 
 // ===== Ability System ===== //
 
+void ABaseCharacter::ApplyEffectSelf(const TSubclassOf<UGameplayEffect>& EffectClass, const float Level) const
+{
+	if (!EffectClass) return;
+	
+	FGameplayEffectContextHandle EffectContext { AbilitySystemComp->MakeEffectContext() };
+	EffectContext.AddSourceObject(this);
+	const FGameplayEffectSpecHandle EffectSpec { AbilitySystemComp->MakeOutgoingSpec(EffectClass, Level, EffectContext)};
+	AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*EffectSpec.Data);
+}
+
 UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
 {
-	return AbilitySystemComponent;
+	return AbilitySystemComp;
 }

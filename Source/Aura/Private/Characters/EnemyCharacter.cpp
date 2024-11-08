@@ -16,9 +16,9 @@ AEnemyCharacter::AEnemyCharacter()
 	WeaponMesh->SetCustomDepthStencilValue(255);
 
 	// Ability System
-	AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("Ability System");
-	AbilitySystemComponent->SetIsReplicated(true);
-	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	AbilitySystemComp = CreateDefaultSubobject<UAuraAbilitySystemComponent>("Ability System");
+	AbilitySystemComp->SetIsReplicated(true);
+	AbilitySystemComp->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 	
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("Attribute Set");
 
@@ -32,8 +32,9 @@ void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Init Ability Info
-	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	// Prepare Ability System
+	AbilitySystemComp->InitAbilityActorInfo(this, this);
+	ApplyEffectSelf(DefaultPrimaryAttributes.LoadSynchronous());
 }
 
 // ===== Highlight ===== //

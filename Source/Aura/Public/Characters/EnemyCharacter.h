@@ -19,6 +19,18 @@ public:
 	
 	virtual void BeginPlay() override;
 
+protected:
+	// ===== Ability System ===== //
+
+	UPROPERTY(EditAnywhere)
+	uint16 CombatLevel = 1;
+
+public:
+	FORCEINLINE virtual uint16 GetCombatLevel() const override
+	{
+		return CombatLevel;
+	}
+	
 public:
 	// ===== Highlight ===== //
 
