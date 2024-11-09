@@ -13,6 +13,8 @@ UAttrMenuWidgetController::UAttrMenuWidgetController()
 	INIT_LOAD_ASSET(AttributeData, "/Game/Data/DataAssets/DA_AttributeInfo.DA_AttributeInfo")
 }
 
+// ===== Events ===== //
+
 void UAttrMenuWidgetController::BindCallbacksToDependencies()
 {
 	check(AttributeData)
@@ -33,10 +35,17 @@ void UAttrMenuWidgetController::BroadcastInitData()
 		BroadcastAttribute(Attr.Key);
 }
 
+// ===== Data ===== //
+
 void UAttrMenuWidgetController::BroadcastAttribute(const FGameplayTag& Tag) const
 {
+	// Get the info from data asset
 	FAuraAttributeInfo Info = AttributeData->FindByTag(Tag);
+
+	// Fill the value from the actual data
 	const FGameplayAttribute& Attribute = AttributeSet->AttributeMap[Tag]();
 	Info.Value = Attribute.GetNumericValue(AttributeSet.Get());
+
+	// Broadcast
 	OnAttributeChanged.Broadcast(Info);
 }
