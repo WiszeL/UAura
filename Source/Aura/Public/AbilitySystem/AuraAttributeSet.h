@@ -23,12 +23,16 @@ struct FEffectProps
 	FGameplayEffectContextHandle CtxHandle;
 };
 
+template <class T>
+using TStaticFunc = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
+
 UCLASS()
 class AURA_API UAuraAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
 
 public:
+	
 	UAuraAttributeSet();
 
 	// ===== Events ===== //
@@ -38,6 +42,10 @@ public:
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 
 	static void SetEffectProps(const FGameplayEffectModCallbackData& Data, FEffectProps& Source, FEffectProps& Target);
+
+	// ===== Attributes ===== //
+
+	TMap<FGameplayTag, TStaticFunc<FGameplayAttribute()>> AttributeMap;
 	
 	// ===== Vital Attributes ===== //
 
@@ -100,7 +108,8 @@ public:
 	UFUNCTION()
 	void OnRep_Vigor(const FGameplayAttributeData& OldVigor) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Vigor);
+	ATTRIBUTE_ACCESSORS(ThisClass, Vigor)
+	;
 
 	// ===== Secondary Attributes ===== //
 

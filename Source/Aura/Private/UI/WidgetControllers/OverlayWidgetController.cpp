@@ -2,18 +2,12 @@
 
 #include "UI/WidgetControllers/OverlayWidgetController.h"
 
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAttributeSet.h"
+
 UOverlayWidgetController::UOverlayWidgetController()
 {
 	EffectData = FSoftObjectPath { TEXT("/Game/Data/DataTables/DT_EffectData.DT_EffectData") };
-}
-
-void UOverlayWidgetController::BroadcastInitData()
-{
-	// Broadcast vital attributes
-	OnHealthChanged.Broadcast(AttributeSet->GetHealth());
-	OnMaxHealthChanged.Broadcast(AttributeSet->GetMaxHealth());
-	OnManaChanged.Broadcast(AttributeSet->GetMana());
-	OnMaxManaChanged.Broadcast(AttributeSet->GetMaxMana());
 }
 
 void UOverlayWidgetController::BindCallbacksToDependencies()
@@ -54,4 +48,13 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 			DynamicEffectAppliedDelegate.Broadcast(*Row);
 		}
 	});
+}
+
+void UOverlayWidgetController::BroadcastInitData()
+{
+	// Broadcast vital attributes
+	OnHealthChanged.Broadcast(AttributeSet->GetHealth());
+	OnMaxHealthChanged.Broadcast(AttributeSet->GetMaxHealth());
+	OnManaChanged.Broadcast(AttributeSet->GetMana());
+	OnMaxManaChanged.Broadcast(AttributeSet->GetMaxMana());
 }

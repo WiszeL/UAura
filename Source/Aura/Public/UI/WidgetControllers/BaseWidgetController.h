@@ -3,9 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilitySystem/AuraAbilitySystemComponent.h"
-#include "AbilitySystem/AuraAttributeSet.h"
-#include "PlayerHandlers/AuraPlayerState.h"
 #include "UObject/Object.h"
 #include "BaseWidgetController.generated.h"
 
@@ -13,6 +10,8 @@ class UAuraAttributeSet;
 class UAuraAbilitySystemComponent;
 class AAuraPlayerState;
 class AAuraPlayerController;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBtnPressedDelegate);
 
 struct FWidgetControllerParams
 {
@@ -39,8 +38,8 @@ public:
 	// ===== Events ===== //
 	
 	void PrepareController(const FWidgetControllerParams& Params);
-	virtual void BroadcastInitData() {}
 	virtual void BindCallbacksToDependencies() {}
+	virtual void BroadcastInitData() {}
 	
 protected:
 	// ===== Model ===== //

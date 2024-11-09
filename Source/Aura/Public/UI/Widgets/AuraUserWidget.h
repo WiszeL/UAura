@@ -29,7 +29,7 @@ public:
 	
 	void SetWidgetController(UBaseWidgetController* InController);
 
-protected:
+public:
 	// ===== Properties ===== //
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)

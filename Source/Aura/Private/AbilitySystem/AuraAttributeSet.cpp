@@ -2,11 +2,36 @@
 
 #include "AbilitySystem/AuraAttributeSet.h"
 
+#include "AuraGameplayTags.h"
 #include "GameplayEffectExtension.h"
 #include "Net/UnrealNetwork.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
+	// Map the attributes to its gameplay tag
+	const FAuraGameplayTags& Tags = FAuraGameplayTags::Get();
+
+	/* Vital Attrs */
+	AttributeMap.Add(Tags.Attributes_Vital_Health, GetHealthAttribute);
+	AttributeMap.Add(Tags.Attributes_Vital_Mana, GetManaAttribute);
+
+	/* Primary Attrs */
+	AttributeMap.Add(Tags.Attributes_Primary_Strength, GetStrengthAttribute);
+	AttributeMap.Add(Tags.Attributes_Primary_Intelligence, GetIntelligenceAttribute);
+	AttributeMap.Add(Tags.Attributes_Primary_Resilience, GetResilienceAttribute);
+	AttributeMap.Add(Tags.Attributes_Primary_Vigor, GetVigorAttribute);
+	
+	/* Secondary Attrs */
+	AttributeMap.Add(Tags.Attributes_Secondary_Armor, GetArmorAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_ArmorPen, GetArmorPenAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_BlockChance, GetBlockChanceAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_CritChance, GetCritChanceAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_CritDamage, GetCritDamageAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_CritRes, GetCritResAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_HealthRegen, GetHealthRegenAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_ManaRegen, GetManaRegenAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_MaxHealth, GetMaxHealthAttribute);
+	AttributeMap.Add(Tags.Attributes_Secondary_MaxMana, GetMaxManaAttribute);
 }
 
 // ===== Events ===== //

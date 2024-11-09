@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "UI/Widgets/AuraUserWidget.h"
 #include "AuraHUD.generated.h"
 
+class UAttrMenuWidgetController;
+class UAuraUserWidget;
 class UBaseWidgetController;
 struct FWidgetControllerParams;
 class UOverlayWidgetController;
-class UAuraUserWidget;
 
 UCLASS()
 class AURA_API AAuraHUD : public AHUD
@@ -24,7 +24,7 @@ public:
 	
 private:
 	template <typename T>
-	T* CreateController(const FWidgetControllerParams& Params, TSubclassOf<T> ControllerClass = T::StaticClass())
+	T* CreateController(const FWidgetControllerParams& Params, const TSubclassOf<T>& ControllerClass = T::StaticClass())
 	{
 		T* WidgetController = NewObject<T>(ControllerClass);
 		WidgetController->PrepareController(Params);
@@ -33,16 +33,10 @@ private:
 		return WidgetController;
 	}
 
-	template <typename T, typename Controller>
-	T* CreateAuraWidget(TSubclassOf<T> WidgetClass, Controller* WidgetController)
-	{
-		T* Widget = CreateWidget<T>(GetOwningPlayerController(), WidgetClass);
-		Widget->SetWidgetController(WidgetController);
-		WidgetController->BroadcastInitData();
-		Widget->AddToViewport();
-
-		return Widget;
-	}
+	UAuraUserWidget* CreateAuraWidget(const TSubclassOf<UAuraUserWidget>& WidgetClass, UBaseWidgetController* WidgetController = nullptr) const;
+	
+	/** A place where we can bind an event from widget controller */
+	void BindToControllerDelegate();
 	
 	// ===== Overlay ===== //
 
@@ -57,4 +51,20 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<UAuraUserWidget> Overlay;
+
+	// ===== Attribute Menu ===== //
+
+	bool bShowAttributeMenu = false;
+
+	UPROPERTY()
+	TObjectPtr<UAttrMenuWidgetController> AttrMenuWidgetController;
+	
+	UPROPERTY(EditAnywhere, Category=AttributeMenu)
+	TSoftClassPtr<UAuraUserWidget> AttributeMenuClass;
+	
+	UPROPERTY()
+	TObjectPtr<UAuraUserWidget> AttributeMenu;
+
+	UFUNCTION()
+	void ShowAttributeMenu();
 };

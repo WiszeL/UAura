@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "BaseWidgetController.h"
+#include "GameplayTagContainer.h"
 #include "OverlayWidgetController.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChangeValueDelegate, float, NewValue);
@@ -40,9 +41,12 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category=Events)
 	FDynamicEffectAppliedDelagate DynamicEffectAppliedDelegate;
+
+	UPROPERTY(BlueprintCallable, Category=Events)
+	FOnBtnPressedDelegate OnAttributeBtnPressed;
 	
-	virtual void BroadcastInitData() override;
 	virtual void BindCallbacksToDependencies() override;
+	virtual void BroadcastInitData() override;
 
 	// ===== Data ===== //
 
