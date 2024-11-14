@@ -36,4 +36,8 @@ void FAuraGameplayTags::InitNativeGameplayTags()
 	GameplayTags.Effect_ManaPotion = TagsManager.AddNativeGameplayTag("Effect.ManaPotion");
 	GameplayTags.Effect_HealthCrystal = TagsManager.AddNativeGameplayTag("Effect.HealthCrystal");
 	GameplayTags.Effect_ManaCrystal = TagsManager.AddNativeGameplayTag("Effect.ManaCrystal");
+
+	// Input Tag
+	GameplayTags.Input_Goto = TagsManager.AddNativeGameplayTag("Input.Goto");
+	GameplayTags.Input_Action = TagsManager.AddNativeGameplayTag("Input.Action");
 }

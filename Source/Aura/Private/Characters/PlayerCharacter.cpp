@@ -19,7 +19,6 @@ APlayerCharacter::APlayerCharacter()
 	
 	// Camera
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
-	SpringArm->SetupAttachment(RootComponent);
 	SpringArm->bInheritPitch = SpringArm->bInheritRoll = SpringArm->bInheritYaw = false;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
@@ -63,6 +62,7 @@ void APlayerCharacter::PossessedBy(AController* NewController)
 	ApplyEffectSelf(DefaultPrimaryAttributes.LoadSynchronous());
 	ApplyEffectSelf(DefaultSecondaryAttributes.LoadSynchronous());
 	ApplyEffectSelf(DefaultVitalAttributes.LoadSynchronous());
+	AddCharacterAbilities();
 }
 
 void APlayerCharacter::Tick(const float DeltaTime)

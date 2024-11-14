@@ -43,6 +43,11 @@ public:
 	FGameplayTag Effect_HealthCrystal;
 	FGameplayTag Effect_ManaCrystal;
 
+	// ===== Input ===== //
+
+	FGameplayTag Input_Goto;
+	FGameplayTag Input_Action;
+
 	// ===== Singleton ===== //
 	
 	static const FAuraGameplayTags& Get()

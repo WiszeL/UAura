@@ -20,7 +20,7 @@ protected:
 	TWeakObjectPtr<UBaseWidgetController> WidgetController;
 
 	/** Called right after the widget controller is set */
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void OnWidgetControllerSet();
 
 public:

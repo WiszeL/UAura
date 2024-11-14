@@ -4,6 +4,7 @@
 
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "PlayerHandlers/AuraPlayerController.h"
 
 UOverlayWidgetController::UOverlayWidgetController()
 {

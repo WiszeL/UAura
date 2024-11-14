@@ -8,6 +8,7 @@
 #include "Interfaces/CombatInterface.h"
 #include "BaseCharacter.generated.h"
 
+class UGameplayAbility;
 class UGameplayEffect;
 class UAuraAttributeSet;
 class UAuraAbilitySystemComponent;
@@ -39,16 +40,20 @@ protected:
 	UPROPERTY()
 	TObjectPtr<UAuraAttributeSet> AttributeSet;
 
-	UPROPERTY(EditAnywhere, Category=AbilitySystem)
+	UPROPERTY(EditAnywhere, Category="AbilitySystem|Attributes")
 	TSoftClassPtr<UGameplayEffect> DefaultPrimaryAttributes;
 
-	UPROPERTY(EditAnywhere, Category=AbilitySystem)
+	UPROPERTY(EditAnywhere, Category="AbilitySystem|Attributes")
 	TSoftClassPtr<UGameplayEffect> DefaultSecondaryAttributes;
 
-	UPROPERTY(EditAnywhere, Category=AbilitySystem)
+	UPROPERTY(EditAnywhere, Category="AbilitySystem|Attributes")
 	TSoftClassPtr<UGameplayEffect> DefaultVitalAttributes;
 
+	UPROPERTY(EditAnywhere, Category="AbilitySystem|Abilities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+	
 	void ApplyEffectSelf(const TSubclassOf<UGameplayEffect>& EffectClass, const float Level = 1.f) const;
+	void AddCharacterAbilities();
 	
 public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;

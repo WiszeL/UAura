@@ -6,6 +6,10 @@
 #include "Blueprint/WidgetTree.h"
 #include "UI/WidgetControllers/BaseWidgetController.h"
 
+void UAuraUserWidget::OnWidgetControllerSet_Implementation()
+{
+}
+
 void UAuraUserWidget::SetWidgetController(UBaseWidgetController* InController)
 {
 	// Set the controller

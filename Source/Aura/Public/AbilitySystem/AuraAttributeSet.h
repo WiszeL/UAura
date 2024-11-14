@@ -57,7 +57,7 @@ public:
 	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Health);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Health);
 
 	/* Mana */
 	UPROPERTY(ReplicatedUsing=OnRep_Mana)
@@ -66,7 +66,7 @@ public:
 	UFUNCTION()
 	void OnRep_Mana(const FGameplayAttributeData& OldMana) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Mana);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Mana);
 
 	// ===== Primary Attributes ===== //
 
@@ -78,7 +78,7 @@ public:
 	UFUNCTION()
 	void OnRep_Strength(const FGameplayAttributeData& OldStrength) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Strength);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Strength);
 
 	/* Intelligence */
 
@@ -88,7 +88,7 @@ public:
 	UFUNCTION()
 	void OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Intelligence);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Intelligence);
 
 	/* Resilience */
 
@@ -98,7 +98,7 @@ public:
 	UFUNCTION()
 	void OnRep_Resilience(const FGameplayAttributeData& OldResilience) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Resilience);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Resilience);
 
 	/* Vigor */
 
@@ -108,7 +108,7 @@ public:
 	UFUNCTION()
 	void OnRep_Vigor(const FGameplayAttributeData& OldVigor) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Vigor)
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Vigor)
 	;
 
 	// ===== Secondary Attributes ===== //
@@ -121,7 +121,7 @@ public:
 	UFUNCTION()
 	void OnRep_Armor(const FGameplayAttributeData& OldArmor) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, Armor);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Armor);
 
 	/* ArmorPen */
 
@@ -131,7 +131,7 @@ public:
 	UFUNCTION()
 	void OnRep_ArmorPen(const FGameplayAttributeData& OldArmorPen) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, ArmorPen);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, ArmorPen);
 
 	/* BlockChance */
 
@@ -141,7 +141,7 @@ public:
 	UFUNCTION()
 	void OnRep_BlockChance(const FGameplayAttributeData& OldBlockChance) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, BlockChance);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, BlockChance);
 
 	/* CritChance */
 
@@ -151,7 +151,7 @@ public:
 	UFUNCTION()
 	void OnRep_CritChance(const FGameplayAttributeData& OldCritChance) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, CritChance);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CritChance);
 
 	/* CritDamage */
 
@@ -161,7 +161,7 @@ public:
 	UFUNCTION()
 	void OnRep_CritDamage(const FGameplayAttributeData& OldCritDamage) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, CritDamage);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CritDamage);
 
 	/* CritRes */
 
@@ -171,7 +171,7 @@ public:
 	UFUNCTION()
 	void OnRep_CritRes(const FGameplayAttributeData& OldCritRes) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, CritRes);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CritRes);
 
 	/* HealthRegen */
 
@@ -181,7 +181,7 @@ public:
 	UFUNCTION()
 	void OnRep_HealthRegen(const FGameplayAttributeData& OldHealthRegen) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, HealthRegen);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, HealthRegen);
 
 	/* ManaRegen */
 
@@ -191,7 +191,7 @@ public:
 	UFUNCTION()
 	void OnRep_ManaRegen(const FGameplayAttributeData& OldManaRegen) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, ManaRegen);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, ManaRegen);
 
 	/* Max Health */
 	
@@ -201,7 +201,7 @@ public:
 	UFUNCTION()
 	void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, MaxHealth);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxHealth);
 	
 	/* Max Mana */
 
@@ -211,5 +211,5 @@ public:
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
 
-	ATTRIBUTE_ACCESSORS(ThisClass, MaxMana);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana);
 };

@@ -22,4 +22,12 @@ public:
 
 private:
 	void EffectApplied(UAbilitySystemComponent* AbilitySystemComp, const FGameplayEffectSpec& Spec, FActiveGameplayEffectHandle ActiveHandle) const;
+
+public:
+	// ===== Abilities ===== //
+
+	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
+
+	void AbilityInputPressed(const FGameplayTag& InputTag);
+	void AbilityInputReleased(const FGameplayTag& InputTag);
 };

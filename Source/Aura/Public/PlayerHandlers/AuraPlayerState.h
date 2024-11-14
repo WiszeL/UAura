@@ -20,7 +20,7 @@ public:
 
 	// ===== Events ===== //
 
-	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 private:
 	// ===== Ability System ===== //

@@ -34,6 +34,13 @@ void ABaseCharacter::ApplyEffectSelf(const TSubclassOf<UGameplayEffect>& EffectC
 	AbilitySystemComp->ApplyGameplayEffectSpecToSelf(*EffectSpec.Data);
 }
 
+void ABaseCharacter::AddCharacterAbilities()
+{
+	if (!HasAuthority()) return;
+
+	AbilitySystemComp->AddCharacterAbilities(StartupAbilities);
+}
+
 UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComp;

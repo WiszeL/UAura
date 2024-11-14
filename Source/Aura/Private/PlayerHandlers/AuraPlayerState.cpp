@@ -8,7 +8,7 @@
 
 AAuraPlayerState::AAuraPlayerState()
 {
-	NetUpdateFrequency = 100.f;
+	SetNetUpdateFrequency(100.f);
 
 	// Ability System
 	AbilitySystemComp = CreateDefaultSubobject<UAuraAbilitySystemComponent>("Ability System");
@@ -24,7 +24,7 @@ void AAuraPlayerState::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(ThisClass, CombatLevel);
+	DOREPLIFETIME(AAuraPlayerState, CombatLevel);
 }
 
 // ===== Ability System ===== //
