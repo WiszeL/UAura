@@ -1,6 +1,6 @@
-﻿// Copyright, NyuAnca 2024
+﻿// Copyright, RilAnca 2024
 
-#include "Effector/BaseEffector.h"
+#include "GameplayEffector/BaseEffector.h"
 
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemInterface.h"

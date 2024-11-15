@@ -1,4 +1,4 @@
-// Copyright, NyuAnca 2024
+// Copyright, RilAnca 2024
 
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 
@@ -8,10 +8,10 @@
 
 void UAuraAbilitySystemComponent::OnPlayerControllerSet()
 {
-	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &ThisClass::EffectApplied);	
+	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &ThisClass::ClientEffectApplied);	
 }
 
-void UAuraAbilitySystemComponent::EffectApplied(UAbilitySystemComponent*,
+void UAuraAbilitySystemComponent::ClientEffectApplied_Implementation(UAbilitySystemComponent*,
 	const FGameplayEffectSpec& Spec, FActiveGameplayEffectHandle) const
 {
 	FGameplayTagContainer TagContainer;

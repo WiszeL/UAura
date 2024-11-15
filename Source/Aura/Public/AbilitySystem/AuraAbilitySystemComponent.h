@@ -1,4 +1,4 @@
-// Copyright, NyuAnca 2024
+// Copyright, RilAnca 2024
 
 #pragma once
 
@@ -21,7 +21,8 @@ public:
 	virtual void OnPlayerControllerSet() override;
 
 private:
-	void EffectApplied(UAbilitySystemComponent* AbilitySystemComp, const FGameplayEffectSpec& Spec, FActiveGameplayEffectHandle ActiveHandle) const;
+	UFUNCTION(Client, Reliable)
+	void ClientEffectApplied(UAbilitySystemComponent* AbilitySystemComp, const FGameplayEffectSpec& Spec, FActiveGameplayEffectHandle ActiveHandle) const;
 
 public:
 	// ===== Abilities ===== //

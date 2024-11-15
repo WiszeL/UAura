@@ -1,4 +1,4 @@
-// Copyright, NyuAnca 2024
+// Copyright, RilAnca 2024
 
 #pragma once
 
@@ -61,5 +61,17 @@ public:
 	FORCEINLINE UAuraAttributeSet* GetAttributeSet() const
 	{
 		return AttributeSet;
+	}
+
+protected:
+	// ===== Combat ===== //
+
+	UPROPERTY(EditAnywhere, Category="Combat")
+	FName CombatSocket;
+
+public:
+	virtual FVector GetCombatSocketLocation() const override
+	{
+		return WeaponMesh->GetSocketLocation(CombatSocket);
 	}
 };

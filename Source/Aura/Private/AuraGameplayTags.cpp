@@ -1,4 +1,4 @@
-﻿// Copyright, NyuAnca 2024
+﻿// Copyright, RilAnca 2024
 
 #include "AuraGameplayTags.h"
 #include "GameplayTagsManager.h"

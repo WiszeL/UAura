@@ -1,4 +1,4 @@
-﻿// Copyright, NyuAnca 2024
+﻿// Copyright, RilAnca 2024
 
 #pragma once
 
@@ -18,5 +18,6 @@ class AURA_API ICombatInterface
 	GENERATED_BODY()
 
 public:
-	virtual uint16 GetCombatLevel() const { return 0; }	
+	virtual uint16 GetCombatLevel() const { return 0; }
+	virtual FVector GetCombatSocketLocation() const { return FVector::ZeroVector; }
 };

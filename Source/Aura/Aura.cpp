@@ -1,4 +1,4 @@
-// Copyright, NyuAnca 2024
+// Copyright, RilAnca 2024
 
 #include "Aura.h"
 #include "Modules/ModuleManager.h"
