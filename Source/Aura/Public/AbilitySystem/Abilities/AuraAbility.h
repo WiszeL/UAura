@@ -12,8 +12,9 @@ class AURA_API UAuraAbility : public UGameplayAbility
 	GENERATED_BODY()
 
 public:
-	
-	// ===== Gameplay Tag ===== //
+	// ----------------------
+	// Gameplay Tag
+	// ----------------------
 	
 	UPROPERTY(EditAnywhere, Category=Tags)
 	FGameplayTag StartupInputTag;	

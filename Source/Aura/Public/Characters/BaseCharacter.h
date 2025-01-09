@@ -21,18 +21,24 @@ class ABaseCharacter : public ACharacter, public IAbilitySystemInterface, public
 public:
 	ABaseCharacter();
 
-	// ===== Events ===== //
+	// ----------------------
+	// Events
+	// ----------------------
 	
 	virtual void BeginPlay() override;
 
 protected:
-	// ===== Components ===== //
+	// ----------------------
+	// Components
+	// ----------------------
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USkeletalMeshComponent> WeaponMesh;
 
 protected:
-	// ===== Ability System ===== //
+	// ----------------------
+	// Ability System
+	// ----------------------
 
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComp;
@@ -64,7 +70,9 @@ public:
 	}
 
 protected:
-	// ===== Combat ===== //
+	// ----------------------
+	// Combat
+	// ----------------------
 
 	UPROPERTY(EditAnywhere, Category="Combat")
 	FName CombatSocket;

@@ -6,6 +6,7 @@
 #include "AuraAbility.h"
 #include "ProjectileAbility.generated.h"
 
+class ICombatInterface;
 class ABaseProjectile;
 
 UCLASS()
@@ -22,4 +23,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category=Properties)
 	TSubclassOf<ABaseProjectile> ProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category=Properties)
+	TSoftObjectPtr<UAnimMontage> FireMontage;
+	
+	TScriptInterface<ICombatInterface> CombatInterface;
 };
